@@ -1,0 +1,2 @@
+module DynamicObjectHelper
+end

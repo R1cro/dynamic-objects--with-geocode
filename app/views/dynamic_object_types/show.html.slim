@@ -1,0 +1,9 @@
+.authform
+  h3 = notice
+  p
+    b
+      | Name:
+    = @dynamic_object_type.name
+  = link_to 'Edit', edit_dynamic_object_type_path(@dynamic_object_type)
+  |  |
+  = link_to 'Back', dynamic_object_types_path

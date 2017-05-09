@@ -1,0 +1,21 @@
+.authform
+  h3
+    | Object list
+  fieldset
+    - if @dynamic_object.empty?
+      p
+        strong
+          | No Objects
+    - @dynamic_object.each do |object|
+      fieldset
+        = link_to object.name, object, class: 'btn btn-sm btn-primary'
+        p
+        = object.created_at
+        p
+  = form_tag new_dynamic_object_path, method: :get do
+    p
+      |  Objects:
+    b
+      = select_tag :dynamic_object_type_id, options_from_collection_for_select(DynamicObjectType.all, :id, :name)
+      - if !DynamicObjectType.nil?
+        = submit_tag 'New Object', name: nil, class: 'button right'

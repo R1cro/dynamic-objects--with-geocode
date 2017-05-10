@@ -1,17 +1,17 @@
 .authform
-  h3
-    | Listing object types
+  .btn.btn-default.btn-lg.btn-block.disabled
+    | Object Types
   fieldset
-    table
-      tr
-      - @dynamic_object_types.each do |dynamic_object_type|
-        tr
-          td.btn
-            h4 = dynamic_object_type.name
-          td
-          td
-            = link_to 'Show', dynamic_object_type, class: 'btn btn-primary btn-sm'
-            = link_to 'Edit', edit_dynamic_object_type_path(dynamic_object_type), class: 'btn btn-primary btn-sm'
-            = link_to 'Destroy', dynamic_object_type, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'
+    - if @dynamic_object_types.empty?
+      p
+        strong
+          | No Types
+    - @dynamic_object_types.each do |dynamic_object_type|
+      fieldset
+        = link_to dynamic_object_type.name, dynamic_object_type, class: 'btn btn-sm btn-primary btn-block'
+        hr
+          = link_to 'Show', dynamic_object_type, class: 'btn btn-default btn-sm'
+          = link_to 'Edit', edit_dynamic_object_type_path(dynamic_object_type), class: 'btn btn-default btn-sm'
+          = link_to 'Destroy', dynamic_object_type, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'
   fieldset
     = link_to 'New Product type', new_dynamic_object_type_path, class: 'btn btn-sm btn-primary'

@@ -1,20 +1,30 @@
 .authform
-  h3
+  .btn.btn-default.btn-lg.btn-block.disabled
     | Locations
+  - if @locations.empty?
+    fieldset
+      p
+        strong
+          | No Locations
   - @locations.each do |location|
     fieldset
-      = link_to location.address, location, class: 'btn btn-sm btn-primary'
+      = link_to location.address, location, class: 'btn btn-sm btn-primary btn-block'
       hr
-        b = 'Latitude:'
-        .badge = location.latitude
+        .btn.btn-default.btn-sm.btn-block
+          = 'Latitude: '
+          span
+            b = location.latitude
       br
-        b = 'Longitude:'
-        .badge = location.longitude
+        .btn.btn-default.btn-sm.btn-block
+          = 'Longtude: '
+          span
+            b = location.longitude
       p
       hr
-        = image_tag "http://maps.google.com/maps/api/staticmap?size=340x200&sensor=false&zoom=13&markers=#{location.latitude}%2C#{location.longitude}"
+        = image_tag "http://maps.google.com/maps/api/staticmap?size=340x200&sensor=false&zoom=17&markers=#{location.latitude}%2C#{location.longitude}"
       hr
         = link_to 'Edit', edit_location_path(location), class: 'btn btn-primary btn-sm'
         = link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'
-    br
-  = link_to 'New Location', new_location_path
+
+  fieldset
+    = link_to 'New Location', new_location_path, class: 'btn btn-primary btn-sm'

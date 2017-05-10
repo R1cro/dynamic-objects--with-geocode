@@ -1,6 +1,7 @@
-h1
-  | Editing Location
-= render 'form', location: @location
-= link_to 'Show', @location
-|  | 
-= link_to 'Back', locations_path
+.authform
+  .btn.btn-default.btn-lg.btn-block.disabled
+    | Editing Location
+  = render 'form', location: @location
+  fieldset
+    = link_to 'Show', @location, class: 'btn btn-info btn-sm'
+    = link_to 'Back', locations_path, class: 'btn btn-primary btn-sm'

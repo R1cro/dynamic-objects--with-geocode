@@ -1,6 +1,15 @@
 .authform
-  h3
-    | Object list
+  .btn.btn-default.btn-lg.btn-block.disabled
+    | Object List
+  br
+  = form_tag new_dynamic_object_path, method: :get do
+    p
+      |  Object types:
+    b
+      = select_tag :dynamic_object_type_id, options_from_collection_for_select(DynamicObjectType.all, :id, :name), class: 'form-control'
+    br
+    - if !DynamicObjectType.nil?
+      = submit_tag 'New Object', name: nil, class: 'btn btn-primary btn-sm right'
   fieldset
     - if @dynamic_object.empty?
       p
@@ -8,14 +17,19 @@
           | No Objects
     - @dynamic_object.each do |object|
       fieldset
-        = link_to object.name, object, class: 'btn btn-sm btn-primary'
+        = link_to object.name, object, class: 'btn btn-sm btn-primary btn-block'
+        hr
+          .btn.btn-default.btn-sm.btn-block.disabled
+            = 'Created: '
+            span
+              b = object.created_at
         p
-        = object.created_at
+        .btn.btn-default.btn-sm.btn-block.disabled
+          = 'Fields: '
+          span
+            b = object.properties.count
         p
-  = form_tag new_dynamic_object_path, method: :get do
-    p
-      |  Objects:
-    b
-      = select_tag :dynamic_object_type_id, options_from_collection_for_select(DynamicObjectType.all, :id, :name)
-      - if !DynamicObjectType.nil?
-        = submit_tag 'New Object', name: nil, class: 'button right'
+          .btn.btn-default.btn-sm.btn-block.disabled
+            = 'Type: '
+            span
+              b = object.dynamic_object_type.name

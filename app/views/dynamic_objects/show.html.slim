@@ -1,25 +1,24 @@
 .authform
   h3
     | Object Details
-  p
-    b
-      | Name:
-    = @dynamic_object.name
-  p
-    b
-      | Location:
-    = link_to @dynamic_object.location.address, location_path(@dynamic_object.location.id)
-  p
-    = image_tag "http://maps.google.com/maps/api/staticmap?size=540x400&sensor=false&zoom=13&markers=#{@dynamic_object.location.latitude}%2C#{@dynamic_object.location.longitude}"
-  - @dynamic_object.properties.each do |name, value|
+  fieldset
     p
       b
-        = name.humanize
-        | :
-      = value
-  p
-    = link_to 'Edit', edit_dynamic_object_path(@dynamic_object)
-    |  |
-    = link_to 'Destroy',  { action: :destroy, id: @dynamic_object.id }, method: :delete, data: { confirm: 'Are you sure?' }
-    |  |
-    = link_to 'Back to Objects', dynamic_objects_path
+        | Name:
+      p.btn-info.btn-sm = @dynamic_object.name
+    p
+      b
+        | Location:
+      p.btn-default.btn-sm = link_to @dynamic_object.location.address, location_path(@dynamic_object.location.id)
+    p
+      = image_tag "http://maps.google.com/maps/api/staticmap?size=540x400&sensor=false&zoom=13&markers=#{@dynamic_object.location.latitude}%2C#{@dynamic_object.location.longitude}"
+    - @dynamic_object.properties.each do |name, value|
+      p
+        b
+          = name.humanize
+          | :
+          p.btn-default.btn-sm = value
+  fieldset
+    = link_to 'Edit', edit_dynamic_object_path(@dynamic_object), class: 'btn btn-primary btn-sm'
+    = link_to 'Destroy',  { action: :destroy, id: @dynamic_object.id }, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'
+    = link_to 'Back to Objects', dynamic_objects_path, class: 'btn btn-primary btn-sm right'

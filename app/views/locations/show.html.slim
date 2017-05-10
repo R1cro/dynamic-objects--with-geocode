@@ -1,17 +1,20 @@
-p#notice
-  = notice
-p
-  strong
-    | Address:
-  = @location.address
-p
-  strong
-    | Latitude:
-  = @location.latitude
-p
-  strong
-    | Longitude:
-  = @location.longitude
-= link_to 'Edit', edit_location_path(@location)
-|  | 
-= link_to 'Back', locations_path
+.authform
+  .btn.btn-default.btn-lg.btn-block.disabled
+    | Address
+  fieldset
+    p
+      .btn.btn-primary.btn-sm.btn-block
+         = @location.address
+    hr
+      .btn.btn-default.btn-sm.btn-block.disabled
+        = 'Latitude: '
+        span
+          b = @location.latitude
+    p
+      .btn.btn-default.btn-sm.btn-block.disabled
+        = 'Longitude: '
+        span
+          b = @location.longitude
+  fieldset
+    = link_to 'Edit', edit_location_path(@location), class: 'btn btn-primary btn-sm'
+    = link_to 'Back', locations_path, class: 'btn btn-primary btn-sm right'

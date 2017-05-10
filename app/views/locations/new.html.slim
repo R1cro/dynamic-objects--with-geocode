@@ -1,4 +1,5 @@
-h1
-  | New Location
-= render 'form', location: @location
-= link_to 'Back', locations_path
+.authform
+  .btn.btn-default.btn-lg.btn-block.disabled
+    | New Location
+  = render 'form', location: @location
+
